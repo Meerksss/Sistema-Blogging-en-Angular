@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-blog',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css',
@@ -38,36 +39,28 @@ export class BlogComponent {
 
   crearPost() {
     const campos = this.postBlog;
-
     if (
       !campos.titulo.trim() ||
-      !campos.imagen.trim() ||
+      !campos.imagen ||
       !campos.descripcion.trim() ||
-      !campos.fecha.trim()
+      !campos.fecha
     ) {
       alert('Todos los campos del formulario son obligatorios.');
       return;
     }
 
-    this.arrayPosts.push({
-      titulo: campos.titulo,
-      imagen: campos.imagen,
-      descripcion: campos.descripcion,
-      fecha: campos.fecha,
-    });
-
-    this.postBlog = {
-      titulo: '',
-      imagen: '',
-      descripcion: '',
-      fecha: '',
-    };
+    this.arrayPosts.push({ ...campos });
+    this.postBlog = { titulo: '', imagen: '', descripcion: '', fecha: '' };
   }
 
   cargarImagen(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.postBlog.imagen = URL.createObjectURL(file);
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.postBlog.imagen = reader.result as string;
+      };
+      reader.readAsDataURL(file);
     }
   }
 
@@ -81,7 +74,9 @@ export class BlogComponent {
       }">
         <div class="card-body">
           <p class="card-text">${postBlog.descripcion}</p>
-          <p class="card-text"><small class="text-muted">Publicado el ${new Date(postBlog.fecha).toLocaleDateString()}</small></p>
+          <p class="card-text"><small class="text-muted">Publicado el ${new Date(
+            postBlog.fecha
+          ).toLocaleDateString()}</small></p>
         </div>
       </div>`;
     });
