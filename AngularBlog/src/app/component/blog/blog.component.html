@@ -1,18 +1,21 @@
-<h1 class="titulo-name">Bienvenido al Blog de Angular</h1>
-
-<form action="">
-    <input type="text" placeholder="Título del post" [(ngModel)]="">
-    <input type="text" [(ngModel)]="">
-    <textarea name="" id="" [(ngModel)]="" cols="30" rows="10" placeholder="Descripción del post...">
-
-    </textarea>
-    <input type="text" [(ngModel)]="">
+<h1 class="titulo-name">Bienvenido al blog de Angular</h1>
+<br>
+<form action="get" class="formulario">
+    <label for="text">Título del post:</label>
+    <input type="text" [(ngModel)]="postBlog.titulo" required>
+    <label for="imagen">Selecciona una imagen:</label>
+    <input type="file" [(ngModel)]="postBlog.imagen" required>
+    <label for="text">Descipción:</label>
+    <textarea cols="40" rows="5" [(ngModel)]="postBlog.descripcion" required></textarea>
+    <label for="text">Selecciona una fecha:</label>
+    <input type="date" [(ngModel)]="postBlog.fecha" required>
     <button (click)="crearPost()">Publicar</button>
 </form>
 <hr>
-<div>
-    <h2 class="titulo-post"></h2>
-    <img src="" alt="">
-    <p class="text-blog"></p>
-    <small class="text-blog-small"></small>
+<div class="container-post">
+    <h2 class="titulo-name">Posts publicados</h2>
+</div>
+<br>
+<div class="container-post" [innerHTML]="pintarPost()">
+    
 </div>

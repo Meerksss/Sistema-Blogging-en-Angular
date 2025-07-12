@@ -4,7 +4,7 @@ import { BlogComponent } from "./component/blog/blog.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BlogComponent],
+  imports: [BlogComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
