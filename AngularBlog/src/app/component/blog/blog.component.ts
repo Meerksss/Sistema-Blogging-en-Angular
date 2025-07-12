@@ -20,22 +20,25 @@ export class BlogComponent {
 
   arrayPosts: IBlog[] = [];
 
-  arrayNoticias = [
+  arrayNoticias: IBlog[] = [
     {
       titulo: 'El Lince Ibérico',
-      imagen: 'imgs/lince.jpg',
+      imagen: 'img/Lince.jpg',
       descripcion:
         'El lince ibérico, uno de los felinos más amenazados del planeta, sigue recuperando terreno en la península gracias a los esfuerzos de conservación. Este majestuoso animal, reconocido por sus orejas puntiagudas y mirada penetrante, simboliza la lucha por preservar nuestra biodiversidad.',
-      fecha: new Date('2025-05-03'),
+      fecha: '2025-05-03',
     },
     {
       titulo: 'El mejor amigo del hombre, el perro',
-      imagen: 'imgs/perro.jpg',
+      imagen: 'img/Perro.jpg',
       descripcion:
         'Desde hace miles de años, los perros han acompañado al ser humano como guardianes, pastores y compañeros fieles. Su capacidad para entendernos y generar vínculos emocionales los convierte en algo más que una mascota. ',
-      fecha: new Date('2025-06-15'),
+      fecha: '2025-06-15',
     },
   ];
+  constructor() {
+    this.arrayPosts = [...this.arrayNoticias];
+  }
 
   crearPost() {
     const campos = this.postBlog;
@@ -43,7 +46,7 @@ export class BlogComponent {
       !campos.titulo.trim() ||
       !campos.imagen ||
       !campos.descripcion.trim() ||
-      !campos.fecha
+      !campos.fecha.trim()
     ) {
       alert('Todos los campos del formulario son obligatorios.');
       return;
@@ -64,7 +67,7 @@ export class BlogComponent {
     }
   }
 
-  pintarPost() {
+  /* pintarPost() {
     let html = '';
     this.arrayPosts.forEach((postBlog) => {
       html += `<div class="card">
@@ -81,5 +84,5 @@ export class BlogComponent {
       </div>`;
     });
     return html;
-  }
+  } */
 }
