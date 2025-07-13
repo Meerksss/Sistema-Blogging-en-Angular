@@ -66,23 +66,4 @@ export class BlogComponent {
       reader.readAsDataURL(file);
     }
   }
-
-  /* pintarPost() {
-    let html = '';
-    this.arrayPosts.forEach((postBlog) => {
-      html += `<div class="card">
-      <h5 class="card-title">${postBlog.titulo}</h5>
-        <img src="${postBlog.imagen}" class="card-img-top" alt="${
-        postBlog.titulo
-      }">
-        <div class="card-body">
-          <p class="card-text">${postBlog.descripcion}</p>
-          <p class="card-text"><small class="text-muted">Publicado el ${new Date(
-            postBlog.fecha
-          ).toLocaleDateString()}</small></p>
-        </div>
-      </div>`;
-    });
-    return html;
-  } */
 }
